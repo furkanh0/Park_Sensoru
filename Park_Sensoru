@@ -1,0 +1,118 @@
+const int trigPin=11, echoPin=10;
+const int yled=2, mled1=3, mled2=4, sled1=5, sled2=6, kled1=7, buzzer=8;
+long sure=0,uzaklik=0;
+
+void setup() {
+  pinMode(trigPin,OUTPUT);
+  pinMode(echoPin,INPUT);
+  pinMode(buzzer,OUTPUT);
+  digitalWrite(yled,OUTPUT);
+  digitalWrite(mled1,OUTPUT);
+  digitalWrite(mled2,OUTPUT);
+  digitalWrite(sled1,OUTPUT);
+  digitalWrite(sled2,OUTPUT);
+  digitalWrite(kled1,OUTPUT);  
+  Serial.begin(9600);
+}
+
+void loop() {
+ digitalWrite(trigPin,LOW);
+ delayMicroseconds(2);
+ digitalWrite(trigPin,HIGH);
+ delayMicroseconds(10);
+ digitalWrite(trigPin,LOW);
+ sure=pulseIn(echoPin,HIGH);
+ uzaklik=(sure/2)*0.0345;
+
+if (uzaklik<=5)
+{
+  digitalWrite(yled,HIGH);
+  digitalWrite(mled1,HIGH);
+  digitalWrite(mled2,HIGH);
+  digitalWrite(sled1,HIGH);
+  digitalWrite(sled2,HIGH);
+  digitalWrite(kled1,HIGH);
+  digitalWrite(buzzer,HIGH);
+  delay(35);
+  digitalWrite(buzzer,LOW);
+  delay(35);
+}
+else if (uzaklik<=15)
+{
+  digitalWrite(yled,HIGH);
+  digitalWrite(mled1,HIGH);
+  digitalWrite(mled2,HIGH);
+  digitalWrite(sled1,HIGH);
+  digitalWrite(sled2,HIGH);
+  digitalWrite(kled1,LOW);
+  digitalWrite(buzzer,HIGH);
+  delay(50);
+  digitalWrite(buzzer,LOW); 
+  delay(50);
+}
+else if (uzaklik<=25)
+{
+  digitalWrite(yled,HIGH);
+  digitalWrite(mled1,HIGH);
+  digitalWrite(mled2,HIGH);
+  digitalWrite(sled1,HIGH);
+  digitalWrite(sled2,LOW);
+  digitalWrite(kled1,LOW);
+  digitalWrite(buzzer,HIGH);
+   delay(100);
+  digitalWrite(buzzer,LOW); 
+  delay(100);
+}
+else if (uzaklik<=35)
+{
+  digitalWrite(yled,HIGH);
+  digitalWrite(mled1,HIGH);
+  digitalWrite(mled2,HIGH);
+  digitalWrite(sled1,LOW);
+  digitalWrite(sled2,LOW);
+  digitalWrite(kled1,LOW); 
+  digitalWrite(buzzer,HIGH);
+   delay(150);
+  digitalWrite(buzzer,LOW); 
+  delay(150);
+}
+else if (uzaklik<=45)
+{
+  digitalWrite(yled,HIGH);
+  digitalWrite(mled1,HIGH);
+  digitalWrite(mled2,LOW);
+  digitalWrite(sled1,LOW);
+  digitalWrite(sled2,LOW);
+  digitalWrite(kled1,LOW);
+  digitalWrite(buzzer,HIGH);
+   delay(200);
+  digitalWrite(buzzer,LOW); 
+  delay(200);
+}
+  else if (uzaklik<=55)
+{
+  digitalWrite(yled,HIGH);
+  digitalWrite(mled1,LOW);
+  digitalWrite(mled2,LOW);
+  digitalWrite(sled1,LOW);
+  digitalWrite(sled2,LOW);
+  digitalWrite(kled1,LOW);
+  digitalWrite(buzzer,HIGH);
+  delay(250);
+  digitalWrite(buzzer,LOW); 
+  delay(250);
+
+}
+else  
+{
+  digitalWrite(yled,LOW);
+  digitalWrite(mled1,LOW);
+  digitalWrite(mled2,LOW);
+  digitalWrite(sled1,LOW);
+  digitalWrite(sled2,LOW);
+  digitalWrite(kled1,LOW);
+  digitalWrite(buzzer,LOW);
+}
+Serial.println(uzaklik);
+delay(50);
+}
